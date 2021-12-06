@@ -63,11 +63,16 @@ final class PublisherCollective
         return $query_vars;
     }
 
+    private static function get_ads_txt_url()
+    {
+        return 'https://kumo.network-n.com/adstxt/?domain=' . ($_SERVER['HTTP_HOST'] ?? "");
+    }
+
     public static function get_ads_txt_content_or_cache($renew = false)
     {
         $data = get_transient('publisher_collective_ads_txt');
         if (empty($data) || $renew) {
-            $data = wp_remote_retrieve_body(wp_remote_get('https://kumo.network-n.com/adstxt/partner.txt'));
+            $data = wp_remote_retrieve_body(wp_remote_get(self::get_ads_txt_url()));
             if ($data !== false) {
                 set_transient('publisher_collective_ads_txt', $data, 86400);
             }
