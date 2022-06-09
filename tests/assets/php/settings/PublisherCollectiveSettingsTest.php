@@ -2,26 +2,6 @@
 
 declare(strict_types=1);
 
-if (!function_exists('dump')) {
-    function dump($object = "", $echo = true)
-    {
-        $output = "<pre style='background-color: #0c0c0c; color: #0bbd0b; padding:20px;'>" . print_r($object, true) . "</pre>";
-        if ($echo) {
-            echo $output;
-            return;
-        }
-        return $output;
-    }
-}
-
-if (!function_exists('dd')) {
-    function dd($object = "")
-    {
-        dump($object);
-        die;
-    }
-}
-
 use PHPUnit\Framework\TestCase;
 
 include __DIR__.'/../../../publisher-collective_mock_functions.php';
