@@ -13,7 +13,7 @@ class PublisherCollectiveSettings
     /**
      * @var string
      */
-    const PAGE_TITLE = 'publisher collective adstxt settings';
+    const PAGE_TITLE = 'Publisher Collective ads.txt settings';
 
     /**
      * @var array
@@ -60,8 +60,8 @@ class PublisherCollectiveSettings
     public function initiateAdminFields()
     {
         add_settings_error(
-            'pub_col_settings_error_field_key', // whatever you registered in `register_setting
-            'pub_col_settings_error_field', // doesn't really mater
+            'pub_col_settings_error_field_key',
+            'pub_col_settings_error_field',
             __($this->resultMessage['message'], 'wpse'),
             $this->resultMessage['status']
         );
@@ -135,11 +135,6 @@ class PublisherCollectiveSettings
     public function handleSubmission()
     {
         if (isset($_POST['pc-ads-txt-extra-params'])) {
-            if (empty($_POST['pc-ads-txt-extra-params'])) {
-                $this->resultMessage['status'] = self::RESULT_STATUS['ERRORED'];
-                $this->resultMessage['message'] = self::RESULT_MESSAGES['ERRORED'];
-                return;
-            }
             $adsTxtExtraParams = $_POST['pc-ads-txt-extra-params'];
             update_option('pc-ads-txt-extra-params', $adsTxtExtraParams);
             $this->resultMessage['status'] = self::RESULT_STATUS['SUCCESS'];

@@ -32,15 +32,15 @@ final class PublisherCollectiveSettingsTest extends TestCase
         $this->assertEquals($resultMessage['message'], 'Successfully undated');
     }
 
-    public function testErrorReceivedIfExtraParamsEmpty(): void
+    public function testSuccessReceivedIfExtraParamsEmpty(): void
     {
         $_POST['pc-ads-txt-extra-params'] = '';
         $publisherCollectiveSettings = new PublisherCollectiveSettings();
         $this->getProperty($publisherCollectiveSettings, 'resultMessage');
         $publisherCollectiveSettings->handleSubmission();
         $resultMessage = $this->getProperty($publisherCollectiveSettings, 'resultMessage');
-        $this->assertEquals($resultMessage['status'], $publisherCollectiveSettings::RESULT_STATUS['ERRORED']);
-        $this->assertEquals($resultMessage['message'], $publisherCollectiveSettings::RESULT_MESSAGES['ERRORED']);
+        $this->assertEquals($resultMessage['status'], $publisherCollectiveSettings::RESULT_STATUS['SUCCESS']);
+        $this->assertEquals($resultMessage['message'], $publisherCollectiveSettings::RESULT_MESSAGES['SUCCESS']);
     }
 
     public function testNULLReceivedIfExtraParamsNOTSent(): void
