@@ -99,7 +99,7 @@ final class PublisherCollective
         }
         if (!empty($data)) {
             $adsTxtExtraParams = get_option('pc-ads-txt-extra-params', null);
-            $data .= $adsTxtExtraParams;
+            $data .= PHP_EOL.$adsTxtExtraParams;
         }
         return $data;
     }
